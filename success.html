@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Заявка отправлена — Nos Nard</title>
+
+<style>
+:root {
+  --bg:#090b17;
+  --card:rgba(25,29,51,.78);
+  --text:#f8f8ff;
+  --muted:#a7adc5;
+  --accent:#a99aff;
+  --border:rgba(255,255,255,.12);
+}
+
+[data-theme="light"] {
+  --bg:#f3f4fc;
+  --card:rgba(255,255,255,.82);
+  --text:#191a2c;
+  --muted:#71758c;
+  --accent:#7161db;
+  --border:rgba(30,35,70,.12);
+}
+
+* {box-sizing:border-box}
+
+body {
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  overflow:hidden;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+  transition:.4s;
+}
+
+.background {
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  overflow:hidden;
+  background:var(--bg);
+}
+
+.blob {
+  position:absolute;
+  width:600px;
+  height:600px;
+  border-radius:50%;
+  filter:blur(110px);
+  opacity:.4;
+  animation:float 20s infinite alternate ease-in-out;
+}
+
+.blob:nth-child(1) {
+  background:#6649d8;
+  top:-250px;
+  left:-200px;
+}
+
+.blob:nth-child(2) {
+  background:#176cae;
+  right:-200px;
+  top:10%;
+  animation-delay:-7s;
+}
+
+.blob:nth-child(3) {
+  background:#953da3;
+  bottom:-350px;
+  left:25%;
+  animation-delay:-12s;
+}
+
+[data-theme="light"] .blob {
+  opacity:.22;
+}
+
+[data-theme="light"] .blob:nth-child(1) {background:#a69bff}
+[data-theme="light"] .blob:nth-child(2) {background:#7ac9eb}
+[data-theme="light"] .blob:nth-child(3) {background:#e7a4dc}
+
+@keyframes float {
+  from {transform:translate(0,0) scale(1)}
+  to {transform:translate(130px,120px) scale(1.2)}
+}
+
+.card {
+  width:100%;
+  max-width:510px;
+  padding:50px 35px;
+  text-align:center;
+  border-radius:28px;
+  border:1px solid var(--border);
+  background:var(--card);
+  backdrop-filter:blur(25px);
+  box-shadow:0 25px 90px rgba(0,0,0,.2);
+  animation:appear .8s ease;
+}
+
+@keyframes appear {
+  from {opacity:0;transform:translateY(25px)}
+  to {opacity:1;transform:translateY(0)}
+}
+
+.logo {
+  font-size:21px;
+  font-weight:950;
+  letter-spacing:-1px;
+  margin-bottom:35px;
+}
+
+.logo span {color:var(--accent)}
+
+.check {
+  width:85px;
+  height:85px;
+  margin:0 auto 25px;
+  border-radius:26px;
+  display:grid;
+  place-items:center;
+  font-size:42px;
+  color:#fff;
+  background:linear-gradient(135deg,#8875ed,#659de8);
+  box-shadow:0 12px 40px rgba(120,110,230,.3);
+  animation:pop .7s .2s both;
+}
+
+@keyframes pop {
+  0% {transform:scale(.5);opacity:0}
+  70% {transform:scale(1.12)}
+  100% {transform:scale(1);opacity:1}
+}
+
+h1 {
+  font-size:32px;
+  letter-spacing:-1px;
+  margin:0 0 15px;
+}
+
+p {
+  color:var(--muted);
+  line-height:1.8;
+  font-size:15px;
+  margin:0;
+}
+
+.status {
+  margin:27px 0;
+  padding:16px;
+  border:1px solid var(--border);
+  border-radius:15px;
+  background:rgba(130,130,170,.07);
+  font-size:13px;
+  color:var(--muted);
+}
+
+.btn {
+  display:block;
+  padding:16px;
+  border-radius:14px;
+  text-decoration:none;
+  font-weight:800;
+  color:#111225;
+  background:linear-gradient(110deg,#b4a5ff,#88b4ff);
+  transition:.25s;
+}
+
+.btn:hover {
+  transform:translateY(-3px);
+  filter:brightness(1.1);
+}
+
+.theme {
+  position:fixed;
+  top:20px;
+  right:20px;
+  padding:11px 16px;
+  border-radius:30px;
+  background:var(--card);
+  border:1px solid var(--border);
+  color:var(--text);
+  cursor:pointer;
+}
+
+@media(max-width:500px) {
+  .card {padding:40px 22px}
+  h1 {font-size:27px}
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation:none!important;
+    transition:none!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+  <div class="blob"></div>
+  <div class="blob"></div>
+  <div class="blob"></div>
+</div>
+
+<button class="theme" onclick="toggleTheme()" id="themeBtn">
+  ☀ Светлая тема
+</button>
+
+<div class="card">
+
+  <div class="logo">NOS<span>.</span>NARD</div>
+
+  <div class="check">✓</div>
+
+  <h1>Заявка отправлена!</h1>
+
+  <p>
+    Спасибо за интерес к Nos Nard Distribution!
+    Ваша заявка успешно отправлена.
+  </p>
+
+  <div class="status">
+    ✉ Мы свяжемся с вами по указанной электронной почте.
+  </div>
+
+  <a href="/" class="btn">
+    Вернуться на главную →
+  </a>
+
+</div>
+
+<script>
+function toggleTheme() {
+  const root = document.documentElement;
+
+  const next =
+    root.dataset.theme === "dark" ? "light" : "dark";
+
+  root.dataset.theme = next;
+  localStorage.setItem("distribution-theme",next);
+  updateTheme();
+}
+
+function updateTheme() {
+  const dark =
+    document.documentElement.dataset.theme === "dark";
+
+  document.getElementById("themeBtn").textContent =
+    dark ? "☀ Светлая тема" : "☾ Тёмная тема";
+}
+
+const saved = localStorage.getItem("distribution-theme");
+
+if(saved === "light" || saved === "dark") {
+  document.documentElement.dataset.theme = saved;
+}
+
+updateTheme();
+</script>
+
+</body>
+</html>
